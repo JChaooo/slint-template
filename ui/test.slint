@@ -1,18 +1,164 @@
-export component Example inherits Window { 
-    width: 600px;
-    height: 500px;
+import { TextEdit , HorizontalBox} from "std-widgets.slint";
+export struct Person {
+    name:string,
+    age:int,
+    tel:string,
+    address:string
+}
+export component Example inherits Window {
+    // 隐式转换 int->string
+    property <[string]> list:["元素A",10010.89, 10086];
+    property <{name:string,age:int}> user:{name:"张三",age:18};
+    in-out property <[Person]> persons:[
+        {
+            name:"李四",
+            age: 19,
+            tel: 176743298888,
+            address: "北京"
+        },
+        {
+            name:"王五",
+            age: 20,
+            tel: 176743298889,
+            address: "上海"
+        },
+        {
+            name:"赵六",
+            age: 21,
+            tel: 176743298880,
+            address: "广州"
+        },
+        {
+            name:"孙七",
+            age: 22,
+            tel: 176743298881,
+            address: "深圳"
+        },
+        {
+            name:"钱八",
+            age: 23,
+            tel: 176743298882,
+            address: "成都"
+        }
+    ];
+    // no-frame: true;
+    title: "test-slint";
+    width: 1480px;
+    height: 1000px;
+    background: #d8a1e9;
     Rectangle {
         x: 100px;
         y: 70px;
         width: parent.width - self.x;
         height: parent.height - self.y;
-        background: blue;
+        background: transparent;
+        border-width: 5px;
+        border-color: #fff;
+        border-radius: 10px;
+        VerticalLayout {
+            padding: 50px;
+            alignment: space-around;
+            for item in root.list: Text {
+                text: item;
+                color: #466adf;
+                font-size: 27px;
+                font-weight: 700;
+            }
+            HorizontalLayout {
+                Text { 
+                    text: root.user.name + root.user.age;
+                    color: #ecde1c;
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+            }
+        }
+        GridLayout {
+            spacing: 10px;
+            x: parent.x + 100px;
+            width: parent.width - self.x;
+            padding: 20px;
+            Row {
+                Text {
+                    color: blue;
+                    text: persons[0].name;
+                }
+                Text {
+                    text: persons[0].age;
+                }
+                Text {
+                    text: persons[0].tel;
+                }
+                Text {
+                    text: persons[0].address;
+                }
+            }
+            Row {
+                Text {
+                    text: persons[1].name;
+                }
+                Text {
+                    text: persons[1].age;
+                }
+                Text {
+                    text: persons[1].tel;
+                }
+                Text {
+                    text: persons[1].address;
+                }
+            }
+            Row {
+                Text {
+                    text: persons[2].name;
+                }
+                Text {
+                    text: persons[2].age;
+                }
+                Text {
+                    text: persons[2].tel;
+                }
+                Text {
+                    text: persons[2].address;
+                }
+            }
+            Row {
+                Text {
+                    text: persons[3].name;
+                }
+                Text {
+                    text: persons[3].age;
+                }
+                Text {
+                    text: persons[3].tel;
+                }
+                Text {
+                    text: persons[3].address;
+                }
+            }
+            Row {
+                Text {
+                    text: persons[4].name;
+                }
+                Text {
+                    text: persons[4].age;
+                }
+                Text {
+                    text: persons[4].tel;
+                }
+                Text {
+                    text: persons[4].address;
+                }
+            }
+        }
         Rectangle {
             x: 10px;
             y: 5px;
             width: 50px;
             height: 30px;
             background: green;
+            border-radius: 20px;
+            border-color: #fff;
+            border-width: 2px;
         }
     }
 }
